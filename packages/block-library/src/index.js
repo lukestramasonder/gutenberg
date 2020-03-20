@@ -54,6 +54,7 @@ import * as shortcode from './shortcode';
 import * as spacer from './spacer';
 import * as subhead from './subhead';
 import * as table from './table';
+import * as tableOfContents from './table-of-contents';
 import * as textColumns from './text-columns';
 import * as verse from './verse';
 import * as video from './video';
@@ -154,6 +155,7 @@ export const registerCoreBlocks = () => {
 		spacer,
 		subhead,
 		table,
+		tableOfContents,
 		tagCloud,
 		textColumns,
 		verse,
