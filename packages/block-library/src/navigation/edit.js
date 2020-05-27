@@ -206,7 +206,10 @@ function Navigation( {
 					>
 						<InnerBlocks
 							ref={ ref }
-							allowedBlocks={ [ 'core/navigation-link' ] }
+							allowedBlocks={ [
+								'core/navigation-link',
+								'core/search',
+							] }
 							renderAppender={
 								( isImmediateParentOfSelectedBlock &&
 									! selectedBlockHasDescendants ) ||

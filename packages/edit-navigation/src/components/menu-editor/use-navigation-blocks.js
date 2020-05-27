@@ -6,7 +6,7 @@ import { keyBy, groupBy, sortBy } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { createBlock } from '@wordpress/blocks';
+import { createBlock, parse } from '@wordpress/blocks';
 import { useState, useRef, useEffect } from '@wordpress/element';
 
 /**
@@ -88,19 +88,39 @@ function menuItemToLinkBlock(
 	innerBlocks = [],
 	existingBlock = null
 ) {
-	const attributes = {
-		label: menuItem.title.rendered,
-		url: menuItem.url,
-	};
+	let linkBlock;
+
+	if ( menuItem.type === 'html' ) {
+		const [ parsedBlock ] = parse( menuItem.content.raw ); // TODO: Handle multiple blocks?
+
+		if ( parsedBlock ) {
+			linkBlock = parsedBlock;
+		} else {
+			linkBlock = createBlock( 'core/freeform', {
+				originalContent: menuItem.content.raw,
+			} );
+		}
+	} else {
+		linkBlock = createBlock(
+			'core/navigation-link',
+			{
+				label: menuItem.title.rendered,
+				url: menuItem.url,
+			},
+			innerBlocks
+		);
+	}
 
 	if ( existingBlock ) {
 		return {
 			...existingBlock,
-			attributes,
-			innerBlocks,
+			name: linkBlock.name,
+			attributes: linkBlock.attributes,
+			innerBlocks: linkBlock.innerBlocks,
 		};
 	}
-	return createBlock( 'core/navigation-link', attributes, innerBlocks );
+
+	return linkBlock;
 }
 
 const mapBlocksByMenuId = ( blocks, menuItemsByClientId ) => {

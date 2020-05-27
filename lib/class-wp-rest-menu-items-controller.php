@@ -312,6 +312,7 @@ class WP_REST_Menu_Items_Controller extends WP_REST_Posts_Controller {
 				'menu-item-db-id'       => $menu_item_db_id,
 				'menu-item-object-id'   => $menu_item_obj->object_id,
 				'menu-item-object'      => $menu_item_obj->object,
+				'menu-item-content'     => $menu_item_obj->menu_item_content,
 				'menu-item-parent-id'   => $menu_item_obj->menu_item_parent,
 				'menu-item-position'    => $position,
 				'menu-item-title'       => $menu_item_obj->title,
@@ -331,6 +332,7 @@ class WP_REST_Menu_Items_Controller extends WP_REST_Posts_Controller {
 				'menu-item-db-id'       => 0,
 				'menu-item-object-id'   => 0,
 				'menu-item-object'      => '',
+				'menu-item-content'     => '',
 				'menu-item-parent-id'   => 0,
 				'menu-item-position'    => 0,
 				'menu-item-type'        => 'custom',
@@ -371,6 +373,14 @@ class WP_REST_Menu_Items_Controller extends WP_REST_Posts_Controller {
 					return $check;
 				}
 				$prepared_nav_item[ $original ] = rest_sanitize_value_from_schema( $request[ $api_request ], $schema['properties'][ $api_request ] );
+			}
+		}
+
+		if ( ! empty( $schema['properties']['content'] ) && isset( $request['content'] ) ) {
+			if ( is_string( $request['content'] ) ) {
+				$prepared_nav_item['menu-item-content'] = $request['content'];
+			} elseif ( isset( $request['content']['raw'] ) ) {
+				$prepared_nav_item['menu-item-content'] = $request['content']['raw'];
 			}
 		}
 
@@ -596,6 +606,20 @@ class WP_REST_Menu_Items_Controller extends WP_REST_Posts_Controller {
 			$data['object_id'] = absint( $menu_item->object_id );
 		}
 
+		if ( rest_is_field_included( 'content', $fields ) ) {
+			$data['content'] = array();
+		}
+		if ( rest_is_field_included( 'content.raw', $fields ) ) {
+			$data['content']['raw'] = $menu_item->content;
+		}
+		if ( rest_is_field_included( 'content.rendered', $fields ) ) {
+			/** This filter is documented in wp-includes/post-template.php */
+			$data['content']['rendered'] = apply_filters( 'the_content', $menu_item->content );
+		}
+		if ( rest_is_field_included( 'content.block_version', $fields ) ) {
+			$data['content']['block_version'] = block_version( $menu_item->content );
+		}
+
 		if ( in_array( 'parent', $fields, true ) ) {
 			// Same as post_parent, expose as integer.
 			$data['parent'] = absint( $menu_item->menu_item_parent );
@@ -787,7 +811,7 @@ class WP_REST_Menu_Items_Controller extends WP_REST_Posts_Controller {
 		$schema['properties']['type'] = array(
 			'description' => __( 'The family of objects originally represented, such as "post_type" or "taxonomy".', 'gutenberg' ),
 			'type'        => 'string',
-			'enum'        => array( 'taxonomy', 'post_type', 'post_type_archive', 'custom' ),
+			'enum'        => array( 'taxonomy', 'post_type', 'post_type_archive', 'custom', 'html' ),
 			'context'     => array( 'view', 'edit', 'embed' ),
 			'default'     => 'custom',
 		);
@@ -859,6 +883,35 @@ class WP_REST_Menu_Items_Controller extends WP_REST_Posts_Controller {
 			'type'        => 'integer',
 			'minimum'     => 0,
 			'default'     => 0,
+		);
+
+		$schema['properties']['content'] = array(
+			'description' => __( 'HTML content to display for this menu item. May contain blocks.', 'gutenberg' ),
+			'context'     => array( 'view', 'edit', 'embed' ),
+			'type'        => 'object',
+			'arg_options' => array(
+				'sanitize_callback' => null, // Note: sanitization implemented in self::prepare_item_for_database().
+				'validate_callback' => null, // Note: validation implemented in self::prepare_item_for_database().
+			),
+			'properties'  => array(
+				'raw'           => array(
+					'description' => __( 'HTML content, as it exists in the database.', 'gutenberg' ),
+					'type'        => 'string',
+					'context'     => array( 'edit' ),
+				),
+				'rendered'      => array(
+					'description' => __( 'HTML content, transformed for display.', 'gutenberg' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
+				),
+				'block_version' => array(
+					'description' => __( 'Version of the block format used in the HTML content.', 'gutenberg' ),
+					'type'        => 'integer',
+					'context'     => array( 'edit' ),
+					'readonly'    => true,
+				),
+			),
 		);
 
 		$schema['properties']['target'] = array(

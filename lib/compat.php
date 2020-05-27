@@ -415,7 +415,11 @@ function gutenberg_render_block_with_assigned_block_context( $pre_render, $parse
 	$parsed_block = apply_filters( 'render_block_data', $parsed_block, $source_block );
 
 	$context = array(
-		'postId'   => $post->ID,
+		'query' => array( 'categoryIds' => array() ),
+	);
+
+	if ( isset( $post ) ) {
+		$context['postId'] = $post->ID;
 
 		/*
 		 * The `postType` context is largely unnecessary server-side, since the
@@ -423,10 +427,8 @@ function gutenberg_render_block_with_assigned_block_context( $pre_render, $parse
 		 * manifest is expected to be shared between the server and the client,
 		 * it should be included to consistently fulfill the expectation.
 		 */
-		'postType' => $post->post_type,
-
-		'query'    => array( 'categoryIds' => array() ),
-	);
+		$context['postType'] = $post->post_type;
+	}
 
 	if ( isset( $wp_query->tax_query->queried_terms['category'] ) ) {
 		foreach ( $wp_query->tax_query->queried_terms['category']['terms'] as $category_slug_or_id ) {
@@ -461,3 +463,51 @@ add_filter( 'pre_render_block', 'gutenberg_render_block_with_assigned_block_cont
  * @see WP_Block::render
  */
 remove_action( 'enqueue_block_assets', 'wp_enqueue_registered_block_scripts_and_styles' );
+
+function gutenberg_update_nav_menu_item_content( $menu_id, $menu_item_db_id, $args ) {
+	global $wp_customize;
+
+	// Support setting content in customize_save admin-ajax.php requests by
+	// grabbing the unsanitized $_POST values.
+	if ( isset( $wp_customize ) ) {
+		$values = $wp_customize->unsanitized_post_values();
+		if ( isset( $values[ "nav_menu_item[$menu_item_db_id]" ]['content'] ) ) {
+			if ( is_string( $values[ "nav_menu_item[$menu_item_db_id]" ]['content'] ) ) {
+				$args['menu-item-content'] = $values[ "nav_menu_item[$menu_item_db_id]" ]['content'];
+			} elseif ( isset( $values[ "nav_menu_item[$menu_item_db_id]" ]['content']['raw'] ) ) {
+				$args['menu-item-content'] = $values[ "nav_menu_item[$menu_item_db_id]" ]['content']['raw'];
+			}
+		}
+	}
+
+	$defaults = array(
+		'menu-item-content' => '',
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	update_post_meta( $menu_item_db_id, '_menu_item_content', $args['menu-item-content'] );
+}
+add_action( 'wp_update_nav_menu_item', 'gutenberg_update_nav_menu_item_content', 10, 3 );
+
+function gutenberg_setup_html_nav_menu_item( $menu_item ) {
+	if ( 'html' === $menu_item->type ) {
+		$menu_item->type_label = __( 'HTML', 'gutenberg' );
+		$menu_item->content    = ! isset( $menu_item->content ) ? get_post_meta( $menu_item->db_id, '_menu_item_content', true ) : $menu_item->content;
+	}
+
+	return $menu_item;
+}
+add_filter( 'wp_setup_nav_menu_item', 'gutenberg_setup_html_nav_menu_item' );
+
+function gutenberg_output_html_nav_menu_item( $item_output, $item, $depth, $args ) {
+	if ( 'html' === $item->type ) {
+		$item_output = $args->before;
+		/** This filter is documented in wp-includes/post-template.php */
+		$item_output .= apply_filters( 'the_content', $item->content );
+		$item_output .= $args->after;
+	}
+
+	return $item_output;
+}
+add_filter( 'walker_nav_menu_start_el', 'gutenberg_output_html_nav_menu_item', 10, 4 );

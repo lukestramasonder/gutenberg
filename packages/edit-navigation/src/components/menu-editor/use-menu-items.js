@@ -10,6 +10,7 @@ import { useDispatch, useSelect } from '@wordpress/data';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
+import { serialize } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
@@ -139,11 +140,26 @@ function computeCustomizedAttribute( blocks, menuId, menuItemsRef ) {
 
 	function linkBlockToRequestItem( block, parentId, position ) {
 		const menuItem = omit( getMenuItemForBlock( block ), 'menus', 'meta' );
+
+		let attributes;
+
+		if ( block.name === 'core/navigation-link' ) {
+			attributes = {
+				type: 'custom',
+				title: block.attributes?.label,
+				url: block.attributes.url,
+			};
+		} else {
+			attributes = {
+				type: 'html',
+				content: serialize( block ),
+			};
+		}
+
 		return {
 			...menuItem,
+			...attributes,
 			position,
-			title: block.attributes?.label,
-			url: block.attributes.url,
 			original_title: '',
 			classes: ( menuItem.classes || [] ).join( ' ' ),
 			xfn: ( menuItem.xfn || [] ).join( ' ' ),
