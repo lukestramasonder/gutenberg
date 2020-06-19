@@ -116,18 +116,11 @@ const config = {
 				exclude: /node_modules/,
 				use: cssLoaders,
 			},
+			// Ideally this is not needed and we rename files from scss to css.
 			{
 				test: /\.(sc|sa)ss$/,
 				exclude: /node_modules/,
-				use: [
-					...cssLoaders,
-					{
-						loader: require.resolve( 'sass-loader' ),
-						options: {
-							sourceMap: ! isProduction,
-						},
-					},
-				],
+				use: [ cssLoaders ],
 			},
 		],
 	},

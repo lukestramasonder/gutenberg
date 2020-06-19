@@ -11,10 +11,10 @@
 
 	// Animation
 	transition: border-color 0.1s linear, box-shadow 0.1s linear;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 
 	// Allow overflow on desktop.
-	@include break-small() {
+	@mixin break-small {
 		overflow: inherit;
 	}
 
@@ -74,7 +74,7 @@
 	transition: all 60ms linear;
 	z-index: -1; // This makes it slide out from underneath the toolbar.
 
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 
 	.is-showing-movers & {
 		opacity: 1;

@@ -23,7 +23,7 @@
 
 			// Same padding as body.
 			padding: $grid-unit-20;
-			@include break-small() {
+			@mixin break-small {
 				padding: $grid-unit-30;
 			}
 
@@ -32,7 +32,7 @@
 			}
 		}
 
-		@include break-small() {
+		@mixin break-small {
 			padding: 0;
 		}
 	}
@@ -45,7 +45,7 @@
 	margin-left: auto;
 	margin-right: auto;
 
-	@include break-large() {
+	@mixin break-large {
 		padding: $grid-unit-20 $grid-unit-30 #{ $grid-unit-60 * 2 } $grid-unit-30;
 		padding: 0 $grid-unit-30 $grid-unit-30 $grid-unit-30;
 	}
@@ -55,7 +55,7 @@
 // Exit code editor toolbar.
 .edit-post-text-editor__toolbar {
 	position: sticky;
-	z-index: z-index(".edit-post-text-editor__toolbar");
+	@mixin z-index ".edit-post-text-editor__toolbar";
 	top: 0;
 	left: 0;
 	right: 0;
@@ -63,11 +63,11 @@
 	background: rgba($white, 0.8);
 	padding: $grid-unit-05 $grid-unit-15;
 
-	@include break-small() {
+	@mixin break-small {
 		padding: $grid-unit-15;
 	}
 
-	@include break-large() {
+	@mixin break-large {
 		padding: $grid-unit-15 $grid-unit-30;
 	}
 

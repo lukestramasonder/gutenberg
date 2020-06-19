@@ -11,7 +11,7 @@ $input-size: 300px;
 
 	input[type="text"] {
 		width: 100%;
-		@include break-small() {
+		@mixin break-small {
 			width: $input-size;
 		}
 		padding: $input-padding;
@@ -22,7 +22,7 @@ $input-size: 300px;
 
 		/* Fonts smaller than 16px causes mobile safari to zoom. */
 		font-size: $mobile-text-min-font-size;
-		@include break-small {
+		@mixin break-small {
 			font-size: $default-font-size;
 		}
 
@@ -52,14 +52,14 @@ $input-size: 300px;
 }
 
 .block-editor-url-input__input[type="text"] {
-	@include input-control;
+	@mixin input-control;
 }
 
 // Suggestions
 .block-editor-url-input__suggestions {
 	max-height: 200px;
 	transition: all 0.15s ease-in-out;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 	padding: 4px 0;
 	// To match the url-input width: input width + padding + 2 buttons.
 	width: $input-size + 2;
@@ -70,7 +70,7 @@ $input-size: 300px;
 .block-editor-url-input__suggestions,
 .block-editor-url-input .components-spinner {
 	display: none;
-	@include break-small() {
+	@mixin break-small {
 		display: inherit;
 	}
 }

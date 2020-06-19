@@ -137,10 +137,6 @@ $z-layers: (
 	".components-circular-option-picker__option.is-pressed + svg": 2
 );
 
-@function z-index( $key ) {
-	@if map-has-key( $z-layers, $key ) {
-		@return map-get( $z-layers, $key );
-	}
-
-	@error "Error: Specified z-index `#{$key}` does not exist in the mapping";
+@define-mixin z-index $key {
+	z-index: map-get($z-layers, $key);
 }

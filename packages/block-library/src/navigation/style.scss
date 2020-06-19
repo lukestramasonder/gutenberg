@@ -55,7 +55,7 @@
 			}
 		}
 
-		@include break-medium {
+		@mixin break-medium {
 			left: $grid-unit-30;
 
 			// Nested submenus sit to the left on large breakpoints
@@ -130,7 +130,7 @@
 	svg {
 		fill: currentColor;
 
-		@include break-medium {
+		@mixin break-medium {
 			transform: rotate(90deg);
 		}
 	}

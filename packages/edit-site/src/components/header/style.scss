@@ -40,7 +40,7 @@
 		width: auto;
 	}
 
-	@include break-small() {
+	@mixin break-small {
 		margin-left: 4px;
 
 		.components-icon-button {
@@ -73,7 +73,7 @@
 		display: none;
 	}
 
-	@include break-medium {
+	@mixin break-medium {
 		.is-sidebar-opened & {
 			display: block;
 			right: $sidebar-width;
@@ -81,7 +81,7 @@
 	}
 
 	// Move toolbar into top Editor Bar.
-	@include break-wide {
+	@mixin break-wide {
 		padding-left: $grid-unit-10;
 		position: static;
 		left: auto;

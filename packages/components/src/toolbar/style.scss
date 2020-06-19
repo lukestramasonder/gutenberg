@@ -42,7 +42,7 @@
 			// Animate in.
 			animation: components-button__appear-animation 0.1s ease;
 			animation-fill-mode: forwards;
-			@include reduce-motion("animation");
+			@mixin reduce-motion "animation";
 		}
 
 		svg {
@@ -68,7 +68,7 @@
 
 		// Focus style.
 		&:focus::before {
-			@include block-toolbar-button-style__focus();
+			@mixin block-toolbar-button-style__focus;
 		}
 
 		// Ensure the icon buttons remain square.

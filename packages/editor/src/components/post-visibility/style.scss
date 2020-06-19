@@ -11,7 +11,7 @@
 	}
 
 	.editor-post-visibility__dialog-radio[type="radio"] {
-		@include radio-control;
+		@mixin radio-control;
 		margin-top: 2px;
 	}
 
@@ -30,7 +30,7 @@
 	}
 
 	.editor-post-visibility__dialog-password-input[type="text"] {
-		@include input-control;
+		@mixin input-control;
 		margin-left: 28px;
 	}
 }

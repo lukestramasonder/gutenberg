@@ -13,5 +13,5 @@
 .components-text-control__input[type="month"],
 .components-text-control__input[type="number"] {
 	width: 100%;
-	@include input-control;
+	@mixin input-control;
 }

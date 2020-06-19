@@ -39,7 +39,7 @@ figure.wp-block-image:not(.wp-block) {
 	right: 0;
 	margin: -$border-width 0;
 
-	@include break-small() {
+	@mixin break-small {
 		margin: -$border-width;
 	}
 }

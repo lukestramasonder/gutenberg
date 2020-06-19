@@ -11,7 +11,7 @@
 	}
 
 	.reusable-block-edit-panel * {
-		z-index: z-index(".block-editor-block-list__block .reusable-block-edit-panel *");
+		@mixin z-index ".block-editor-block-list__block .reusable-block-edit-panel *";
 	}
 }
 
@@ -89,7 +89,7 @@
 	&.is-focus-mode:not(.is-multi-selected) {
 		opacity: 0.5;
 		transition: opacity 0.1s linear;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 
 		&:not(.is-focused) .block-editor-block-list__block,
 		&.is-focused {
@@ -156,7 +156,7 @@
 			box-shadow: 0 0 0 $border-width-focus var(--wp-admin-theme-color);
 			border-radius: $radius-block-ui - $border-width; // Border is outset, so so subtract the width to achieve correct radius.
 			transition: box-shadow 0.2s ease-out;
-			@include reduce-motion("transition");
+			@mixin reduce-motion "transition";
 
 			// Windows High Contrast mode will show this outline.
 			outline: 2px solid transparent;
@@ -200,7 +200,7 @@
 		border-radius: $radius-block-ui;
 		box-shadow: 0 0 0 $border-width-focus transparent;
 		transition: box-shadow 0.1s ease-in;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 	}
 
 	// Warnings
@@ -290,7 +290,7 @@
 	&[data-align="left"] > *,
 	&[data-align="right"] > * {
 		// Without z-index, won't be clickable as "above" adjacent content.
-		z-index: z-index("{core/image aligned left or right} .wp-block");
+		@mixin z-index "{core/image aligned left or right} .wp-block";
 	}
 
 	// Left.
@@ -331,7 +331,7 @@
 // Insertion point (includes inbetween/sibling inserter and insertion indicator)
 .block-editor-block-list__insertion-point {
 	position: relative;
-	z-index: z-index(".block-editor-block-list__insertion-point");
+	@mixin z-index ".block-editor-block-list__insertion-point";
 	margin-top: -$block-padding;
 }
 
@@ -348,7 +348,7 @@
 .block-editor-block-list__insertion-point-inserter {
 	// Don't show on mobile.
 	display: none;
-	@include break-mobile() {
+	@mixin break-mobile() {
 		display: flex;
 	}
 
@@ -403,7 +403,7 @@
 		// Fade it in after a delay.
 		animation: block-editor-inserter__toggle__fade-in-animation-delayed 0.3s ease;
 		animation-fill-mode: forwards;
-		@include reduce-motion("animation");
+		@mixin reduce-motion "animation";
 	}
 }
 
@@ -435,7 +435,7 @@
 .wp-block .block-list-appender .block-editor-inserter__toggle {
 	animation: block-editor-inserter__toggle__fade-in-animation 0.1s ease;
 	animation-fill-mode: forwards;
-	@include reduce-motion("animation");
+	@mixin reduce-motion "animation";
 }
 
 .wp-block:not(.is-selected):not(.has-child-selected) .block-editor-default-block-appender {
@@ -476,7 +476,7 @@
 	font-size: $text-editor-font-size;
 	line-height: 150%;
 	transition: padding 0.2s linear;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 
 	&:focus {
 		box-shadow: none;
@@ -591,7 +591,7 @@
 
 .block-editor-block-list__block-selection-button {
 	display: block;
-	z-index: z-index(".block-editor-block-list__block-selection-button");
+	@mixin z-index ".block-editor-block-list__block-selection-button";
 
 	// The button here has a special style to appear as a toolbar.
 	.components-button {
@@ -624,7 +624,7 @@
  */
 
 .block-editor-block-list__block .block-editor-warning {
-	z-index: z-index(".block-editor-warning");
+	@mixin z-index ".block-editor-warning";
 	position: relative;
 
 	&.block-editor-block-list__block-crash-warning {
@@ -643,7 +643,7 @@
  */
 
 .block-editor-block-list__insertion-point-popover.is-without-arrow {
-	z-index: z-index(".block-editor-block-list__insertion-point-popover");
+	@mixin z-index ".block-editor-block-list__insertion-point-popover";
 
 	.components-popover__content.components-popover__content { // Needs specificity.
 		background: none;
@@ -655,7 +655,7 @@
 }
 
 .components-popover.block-editor-block-list__block-popover {
-	z-index: z-index(".block-editor-block-list__block-popover");
+	@mixin z-index ".block-editor-block-list__block-popover";
 
 	.components-popover__content {
 		margin: 0 !important;
@@ -706,7 +706,7 @@
 	padding-left: $block-padding;
 	padding-right: $block-padding;
 
-	@include break-small() {
+	@mixin break-small {
 		padding-left: $block-side-ui-width;
 		padding-right: $block-side-ui-width;
 	}
@@ -716,7 +716,7 @@
 		margin-left: -$block-padding;
 		margin-right: -$block-padding;
 
-		@include break-small() {
+		@mixin break-small {
 			margin-left: -$block-side-ui-width;
 			margin-right: -$block-side-ui-width;
 		}

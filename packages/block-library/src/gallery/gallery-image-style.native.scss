@@ -117,7 +117,7 @@ $caption-padding-vertical: 8px;
 	align-items: flex-end;
 }
 
-@mixin caption-shared {
+@define-mixin caption-shared {
 	font-size: 12px;
 	background-color: #0000;
 	color: #fff;
@@ -126,7 +126,7 @@ $caption-padding-vertical: 8px;
 }
 
 .caption {
-	@include caption-shared;
+	@mixin caption-shared;
 	background-color: $caption-background-color;
 	padding-top: $caption-padding-vertical;
 	padding-bottom: $caption-padding-vertical;
@@ -159,5 +159,5 @@ $caption-padding-vertical: 8px;
 }
 
 .captionExpanded {
-	@include caption-shared;
+	@mixin caption-shared;
 }

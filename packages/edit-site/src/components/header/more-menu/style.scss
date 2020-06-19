@@ -7,7 +7,7 @@
 		padding: 0 2px;
 	}
 
-	@include break-small() {
+	@mixin break-small {
 		margin-left: 4px;
 
 		.components-button {
@@ -25,5 +25,5 @@
 }
 
 .components-popover.edit-site-more-menu__content {
-	z-index: z-index(".components-popover.edit-site-more-menu__content");
+	@mixin z-index ".components-popover.edit-site-more-menu__content";
 }

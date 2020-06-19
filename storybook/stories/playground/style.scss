@@ -9,7 +9,7 @@
 @import "./editor-styles";
 
 .playground {
-	@include break-small() {
+	@mixin break-small {
 		width: calc(100% - #{$sidebar-width});
 	}
 	padding-top: 20px;
@@ -41,7 +41,7 @@
 
 	// Temporarily disable the sidebar on mobile
 	display: none;
-	@include break-small() {
+	@mixin break-small {
 		display: block;
 	}
 }

@@ -3,7 +3,7 @@ $arrow-size: 8px;
 /*!rtl:begin:ignore*/
 .components-popover {
 	position: fixed;
-	z-index: z-index(".components-popover");
+	@mixin z-index ".components-popover";
 	top: 0;
 	left: 0;
 
@@ -22,7 +22,7 @@ $arrow-size: 8px;
 		left: 0;
 		right: 0;
 		bottom: 0;
-		z-index: z-index(".components-popover") !important;
+		@mixin z-index ".components-popover" !important;
 	}
 
 	&:not(.is-without-arrow) {
@@ -233,6 +233,6 @@ $arrow-size: 8px;
 }
 
 .components-popover__close.components-button {
-	z-index: z-index(".components-popover__close");
+	@mixin z-index ".components-popover__close";
 }
 /*!rtl:end:ignore*/

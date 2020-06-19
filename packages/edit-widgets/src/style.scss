@@ -12,20 +12,20 @@ html.wp-toolbar {
 }
 
 body.gutenberg_page_gutenberg-widgets {
-	@include wp-admin-reset( ".blocks-widgets-container" );
+	@mixin wp-admin-reset ".blocks-widgets-container";
 }
 
 .blocks-widgets-container,
 // The modals are shown outside the .blocks-widgets-container wrapper, they need these styles
 .components-modal__frame {
-	@include reset;
+	@mixin reset;
 
 }
 
 .blocks-widgets-container {
 	// On mobile the main content area has to scroll, otherwise you can invoke
 	// the overscroll bounce on the non-scrolling container, for a bad experience.
-	@include break-small {
+	@mixin break-small {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -35,7 +35,7 @@ body.gutenberg_page_gutenberg-widgets {
 	}
 
 	// The WP header height changes at this breakpoint.
-	@include break-medium {
+	@mixin break-medium {
 		min-height: calc(100vh - #{ $admin-bar-height });
 	}
 
@@ -64,4 +64,4 @@ body.gutenberg_page_gutenberg-widgets {
 }
 
 
-@include wordpress-admin-schemes();
+@mixin wordpress-admin-schemes;

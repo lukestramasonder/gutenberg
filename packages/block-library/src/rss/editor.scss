@@ -16,7 +16,7 @@
 		margin-bottom: $grid-unit-10;
 	}
 
-	@include break-medium() {
+	@mixin break-medium {
 		> * {
 			margin-bottom: 0;
 		}

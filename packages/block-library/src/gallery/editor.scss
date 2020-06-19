@@ -62,7 +62,7 @@ figure.wp-block-gallery {
 		border: 1px solid $dark-gray-primary;
 		border-radius: $radius-block-ui;
 		transition: box-shadow 0.2s ease-out;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 
 		&:hover {
 			box-shadow: $shadow-popover;
@@ -73,7 +73,7 @@ figure.wp-block-gallery {
 			min-width: $grid-unit-30;
 			height: $grid-unit-30;
 
-			@include break-small() {
+			@mixin break-small {
 				// Use smaller buttons to fit when there are many columns.
 				.columns-7 &,
 				.columns-8 & {
@@ -94,13 +94,13 @@ figure.wp-block-gallery {
 .block-library-gallery-item__inline-menu {
 	margin: $grid-unit-10;
 	display: inline-flex;
-	z-index: z-index(".block-library-gallery-item__inline-menu");
+	@mixin z-index ".block-library-gallery-item__inline-menu";
 
 	.components-button {
 		color: transparent;
 	}
 
-	@include break-small() {
+	@mixin break-small {
 		// Use smaller buttons to fit when there are many columns.
 		.columns-7 &,
 		.columns-8 & {

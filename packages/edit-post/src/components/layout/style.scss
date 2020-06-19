@@ -19,26 +19,26 @@
 	padding-left: 16px;
 	padding-right: 16px;
 }
-@include editor-left(".edit-post-layout .components-editor-notices__snackbar");
+@mixin editor-left ".edit-post-layout .components-editor-notices__snackbar";
 
 .edit-post-layout .editor-post-publish-panel {
 	position: fixed;
-	z-index: z-index(".edit-post-layout .edit-post-post-publish-panel");
+	@mixin z-index ".edit-post-layout .edit-post-post-publish-panel";
 	top: $admin-bar-height-big;
 	bottom: 0;
 	right: 0;
 	left: 0;
 	overflow: auto;
 
-	@include break-medium() {
-		z-index: z-index(".edit-post-layout .edit-post-post-publish-panel {greater than small}");
+	@mixin break-medium {
+		@mixin z-index ".edit-post-layout .edit-post-post-publish-panel {greater than small}";
 		top: $admin-bar-height;
 		left: auto;
 		width: $sidebar-width;
 		border-left: $border-width solid $light-gray-500;
 		transform: translateX(+100%);
 		animation: edit-post-post-publish-panel__slide-in-animation 0.1s forwards;
-		@include reduce-motion("animation");
+		@mixin reduce-motion "animation";
 
 		body.is-fullscreen-mode & {
 			top: 0;
@@ -69,7 +69,7 @@
 .edit-post-layout__toggle-publish-panel,
 .edit-post-layout__toogle-sidebar-panel,
 .edit-post-layout__toggle-entities-saved-states-panel {
-	z-index: z-index(".edit-post-layout__toogle-sidebar-panel");
+	@mixin z-index ".edit-post-layout__toogle-sidebar-panel";
 	position: fixed !important; // Need to override the default relative positionning
 	top: -9999em;
 	bottom: auto;
@@ -94,10 +94,10 @@
 
 .edit-post-layout__footer {
 	display: none;
-	z-index: z-index(".edit-post-layout__footer");
+	@mixin z-index ".edit-post-layout__footer";
 
 	// Stretch to mimic outline padding on desktop.
-	@include break-medium() {
+	@mixin break-medium {
 		display: flex;
 		background: $white;
 		height: $footer-height;
@@ -123,7 +123,7 @@
 	display: flex;
 	justify-content: flex-end;
 
-	@include break-medium() {
+	@mixin break-medium {
 		display: none;
 	}
 }
@@ -132,7 +132,7 @@
 	// Leave space for the close button
 	height: calc(100% - #{$button-size} - #{$grid-unit-10});
 
-	@include break-medium() {
+	@mixin break-medium {
 		height: 100%;
 	}
 }

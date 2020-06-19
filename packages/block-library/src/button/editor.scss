@@ -43,7 +43,7 @@
 		max-width: 290px;
 	}
 
-	@include break-medium() {
+	@mixin break-medium {
 		max-width: 260px;
 
 		&-input__suggestions {
@@ -51,7 +51,7 @@
 		}
 
 	}
-	@include break-large() {
+	@mixin break-large {
 		max-width: 290px;
 
 		&-input__suggestions {

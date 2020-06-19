@@ -34,7 +34,7 @@
 		flex-shrink: 0;
 	}
 
-	@include break-large() {
+	@mixin break-large {
 		flex-wrap: nowrap;
 
 		.reusable-block-edit-panel__title {
@@ -48,7 +48,7 @@
 }
 
 .reusable-block-edit-panel__title[type="text"] {
-	@include input-control;
+	@mixin input-control;
 }
 
 .is-navigate-mode .is-selected .reusable-block-edit-panel {

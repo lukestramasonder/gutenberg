@@ -1,8 +1,8 @@
 .entities-saved-states__panel {
-	@include reset;
+	@mixin reset;
 	background: $white;
 	position: fixed;
-	z-index: z-index(".entities-saved-states__panel");
+	@mixin z-index ".entities-saved-states__panel";
 	top: $admin-bar-height-big;
 	bottom: 0;
 	right: 0;
@@ -17,8 +17,8 @@
 		display: block;
 	}
 
-	@include break-medium() {
-		z-index: z-index(".entities-saved-states__panel {greater than small}");
+	@mixin break-medium {
+		@mixin z-index ".entities-saved-states__panel {greater than small}";
 		top: $admin-bar-height;
 		left: auto;
 		width: $sidebar-width;

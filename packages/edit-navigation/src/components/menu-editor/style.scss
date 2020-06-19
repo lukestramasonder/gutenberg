@@ -3,7 +3,7 @@
 	align-items: self-start;
 	grid-gap: 10px;
 
-	@include break-medium {
+	@mixin break-medium {
 		grid-template-columns: 280px 1fr;
 	}
 
@@ -78,7 +78,7 @@
 }
 
 .edit-navigation-menu-editor__block-editor-area {
-	@include break-medium {
+	@mixin break-medium {
 		// IE11 requires the column to be explicitly declared.
 		// Only shift this into the second column on desktop.
 		grid-column: 2;

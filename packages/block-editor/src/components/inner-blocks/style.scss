@@ -8,7 +8,7 @@
 		right: -$block-padding;
 		bottom: -$block-padding;
 		left: -$block-padding;
-		z-index: z-index(".block-editor-block-list__layout.has-overlay::after");
+		@mixin z-index ".block-editor-block-list__layout.has-overlay::after";
 	}
 }
 

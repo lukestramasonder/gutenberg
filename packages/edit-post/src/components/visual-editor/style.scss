@@ -53,7 +53,7 @@
 	padding-left: $block-padding;
 	padding-right: $block-padding;
 
-	@include break-small() {
+	@mixin break-small {
 		padding-left: $block-side-ui-width;
 		padding-right: $block-side-ui-width;
 	}

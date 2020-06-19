@@ -7,7 +7,7 @@
 	// The page has a 10px left margin at narrower widths, reverse that so that the notice sits flush.
 	margin-left: -10px;
 
-	@include break-medium {
+	@mixin break-medium {
 		// The page has a 20px left margin at wider widths, reverse that so that the notice sits flush.
 		margin-left: -20px;
 	}

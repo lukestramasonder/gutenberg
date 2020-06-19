@@ -48,7 +48,7 @@ $tree-item-height: 36px;
 
 	&.is-visible .block-editor-block-navigation-block-contents {
 		opacity: 1;
-		@include edit-post__fade-in-animation;
+		@mixin edit-post__fade-in-animation;
 	}
 
 	.block-editor-block-icon {
@@ -76,11 +76,11 @@ $tree-item-height: 36px;
 		width: $button-size;
 		opacity: 0;
 		vertical-align: top;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 
 		&.is-visible {
 			opacity: 1;
-			@include edit-post__fade-in-animation;
+			@mixin edit-post__fade-in-animation;
 		}
 
 		&,
@@ -141,7 +141,7 @@ $tree-item-height: 36px;
 		}
 
 		&:focus::before {
-			@include block-toolbar-button-style__focus();
+			@mixin block-toolbar-button-style__focus();
 		}
 
 		// Focus and toggle pseudo elements.
@@ -160,7 +160,7 @@ $tree-item-height: 36px;
 			// Animate in.
 			animation: components-button__appear-animation 0.1s ease;
 			animation-fill-mode: forwards;
-			@include reduce-motion("animation");
+			@mixin reduce-motion "animation";
 		}
 	}
 

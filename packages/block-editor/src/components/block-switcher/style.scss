@@ -96,7 +96,7 @@
 		font-weight: 500;
 	}
 
-	@include break-medium {
+	@mixin break-medium {
 		position: relative;
 
 		.block-editor-block-switcher__preview {

@@ -21,7 +21,7 @@ $block-editor-link-control-number-of-actions: 1;
 .block-editor-link-control .block-editor-link-control__search-input {
 	// Specificity override.
 	&.block-editor-link-control__search-input input[type="text"] {
-		@include input-control;
+		@mixin input-control;
 		width: calc(100% - #{$grid-unit-20*2});
 		display: block;
 		padding: 11px $grid-unit-20;

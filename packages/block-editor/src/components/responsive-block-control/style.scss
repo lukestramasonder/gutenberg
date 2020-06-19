@@ -1,4 +1,4 @@
-@mixin screen-reader-text() {
+@define-mixin screen-reader-text {
 	border: 0;
 	clip: rect(1px, 1px, 1px, 1px);
 	clip-path: inset(50%);
@@ -43,5 +43,5 @@
 }
 
 .block-editor-responsive-block-control .components-base-control__help {
-	@include screen-reader-text();
+	@mixin screen-reader-text;
 }

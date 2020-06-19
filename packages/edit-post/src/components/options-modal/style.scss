@@ -31,10 +31,10 @@
 	&__custom-fields-confirmation-button {
 		margin: 0 0 0.6rem 48px;
 
-		@include break-medium() {
+		@mixin break-medium {
 			margin-left: 38px;
 		}
-		@include break-small() {
+		@mixin break-small {
 			max-width: 300px;
 		}
 	}

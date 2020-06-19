@@ -4,7 +4,7 @@ html.interface-interface-skeleton__html-container {
 	position: fixed;
 	width: 100%;
 
-	@include break-medium() {
+	@mixin break-medium {
 		position: initial;
 		width: initial;
 	}
@@ -33,7 +33,7 @@ html.interface-interface-skeleton__html-container {
 	}
 }
 
-@include editor-left(".interface-interface-skeleton");
+@mixin editor-left ".interface-interface-skeleton";
 
 .interface-interface-skeleton__body {
 	flex-grow: 1;
@@ -79,7 +79,7 @@ html.interface-interface-skeleton__html-container {
 	width: auto; // Keep the sidebar width flexible.
 	flex-shrink: 0;
 	position: absolute;
-	z-index: z-index(".interface-interface-skeleton__sidebar");
+	@mixin z-index ".interface-interface-skeleton__sidebar";
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -88,21 +88,21 @@ html.interface-interface-skeleton__html-container {
 	color: $dark-gray-primary;
 
 	// On Mobile the header is fixed to keep HTML as scrollable.
-	@include break-medium() {
+	@mixin break-medium {
 		position: relative !important;
-		z-index: z-index(".interface-interface-skeleton__sidebar {greater than small}");
+		@mixin z-index ".interface-interface-skeleton__sidebar {greater than small}";
 	}
 }
 
 .interface-interface-skeleton__sidebar {
-	@include break-medium() {
+	@mixin break-medium {
 		overflow: auto;
 		border-left: $border-width solid $light-gray-500;
 	}
 }
 
 .interface-interface-skeleton__left-sidebar {
-	@include break-medium() {
+	@mixin break-medium {
 		border-right: $border-width solid $light-gray-500;
 	}
 }
@@ -111,7 +111,7 @@ html.interface-interface-skeleton__html-container {
 	flex-shrink: 0;
 	height: auto;  // Keep the height flexible.
 	border-bottom: $border-width solid $light-gray-500;
-	z-index: z-index(".interface-interface-skeleton__header");
+	@mixin z-index ".interface-interface-skeleton__header";
 	color: $dark-gray-primary;
 
 	// On Mobile the header is sticky.
@@ -119,7 +119,7 @@ html.interface-interface-skeleton__html-container {
 	top: 0;
 
 	// Cancel the fixed positioning used on Mobile.
-	@include break-small() {
+	@mixin break-small {
 		position: initial;
 		top: 0;
 	}
@@ -133,13 +133,13 @@ html.interface-interface-skeleton__html-container {
 
 	// On Mobile the footer is hidden
 	display: none;
-	@include break-medium() {
+	@mixin break-medium {
 		display: block;
 	}
 }
 
 .interface-interface-skeleton__actions {
-	z-index: z-index(".interface-interface-skeleton__actions");
+	@mixin z-index ".interface-interface-skeleton__actions";
 	position: fixed !important; // Need to override the default relative positioning
 	top: -9999em;
 	bottom: auto;

@@ -60,7 +60,7 @@
 	margin-top: 0;
 	margin-bottom: 0;
 	transition: 0.1s background ease-in-out;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 }
 .components-panel__body.is-opened > .components-panel__body-title {
 	margin: -1 * $panel-padding;
@@ -85,7 +85,7 @@
 	border: none;
 	box-shadow: none;
 	transition: 0.1s background ease-in-out;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 	height: auto;
 
 	&:focus {
@@ -101,7 +101,7 @@
 		color: $dark-gray-900;
 		fill: currentColor;
 		transition: 0.1s color ease-in-out;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 	}
 
 	// mirror the arrow horizontally in RTL languages

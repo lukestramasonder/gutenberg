@@ -39,7 +39,7 @@
 	}
 }
 
-@include break-small() {
+@mixin break-small {
 	.editor-post-preview {
 		display: none;
 	}

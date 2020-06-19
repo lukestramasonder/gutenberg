@@ -123,17 +123,14 @@ if ( files.length ) {
 
 	bar.tick( 0 );
 
-	stream = glob.stream(
-		[ `${ PACKAGES_DIR }/*/src/**/*.js`, `${ PACKAGES_DIR }/*/src/*.scss` ],
-		{
-			ignore: [
-				`**/benchmark/**`,
-				`**/{__mocks__,__tests__,test}/**`,
-				`**/{storybook,stories}/**`,
-			],
-			onlyFiles: true,
-		}
-	);
+	stream = glob.stream( [ `${ PACKAGES_DIR }/block-editor/src/*.scss` ], {
+		ignore: [
+			`**/benchmark/**`,
+			`**/{__mocks__,__tests__,test}/**`,
+			`**/{storybook,stories}/**`,
+		],
+		onlyFiles: true,
+	} );
 
 	// Pause to avoid data flow which would begin on the `data` event binding,
 	// but should wait until worker processing below.

@@ -15,7 +15,7 @@
 		display: none;
 		margin-left: auto;
 
-		@include break-medium() {
+		@mixin break-medium {
 			display: flex;
 		}
 	}

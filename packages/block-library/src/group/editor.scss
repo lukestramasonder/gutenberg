@@ -47,7 +47,7 @@
 		padding-left: $block-padding;
 		padding-right: $block-padding;
 
-		@include break-small() {
+		@mixin break-small {
 			padding-left: 0;
 			padding-right: 0;
 		}

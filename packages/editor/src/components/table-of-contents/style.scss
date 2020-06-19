@@ -3,14 +3,14 @@
 }
 
 .components-popover.table-of-contents__popover {
-	z-index: z-index(".components-popover.table-of-contents__popover");
+	@mixin z-index ".components-popover.table-of-contents__popover";
 }
 
 .table-of-contents__popover {
 	.components-popover__content {
 		padding: $grid-unit-20;
 
-		@include break-small {
+		@mixin break-small {
 			max-height: calc(100vh - 120px);
 			overflow-y: auto;
 		}

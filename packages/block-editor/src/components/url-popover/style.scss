@@ -35,7 +35,7 @@
 		box-shadow: none;
 
 		> svg {
-			@include block-toolbar-button-style__focus();
+			@mixin block-toolbar-button-style__focus;
 		}
 	}
 }

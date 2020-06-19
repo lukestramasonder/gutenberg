@@ -3,14 +3,14 @@
 	color: $dark-gray-500;
 	overflow: visible;
 
-	@include break-small() {
+	@mixin break-small {
 		z-index: auto;
 		height: 100%;
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
 	}
 
-	@include break-medium() {
+	@mixin break-medium {
 		width: $sidebar-width;
 	}
 
@@ -25,7 +25,7 @@
 		margin-bottom: -1px;
 		position: relative;
 
-		@include break-small() {
+		@mixin break-small {
 			overflow: visible;
 			height: auto;
 			max-height: none;
@@ -34,13 +34,13 @@
 
 	> .components-panel .components-panel__header {
 		position: fixed;
-		z-index: z-index(".components-panel__header");
+		@mixin z-index ".components-panel__header";
 		top: 0;
 		left: 0;
 		right: 0;
 		height: $panel-header-height;
 
-		@include break-small() {
+		@mixin break-small {
 			position: inherit;
 			top: auto;
 			left: auto;

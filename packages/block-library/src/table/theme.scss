@@ -17,6 +17,6 @@
 	}
 
 	figcaption {
-		@include caption-style-theme();
+		@mixin caption-style-theme;
 	}
 }

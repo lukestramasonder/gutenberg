@@ -39,7 +39,7 @@ $dot-scale: 3;  // How much the pulse animation should scale up by in size
 		padding: 5px (36px + 5px) 5px 20px;
 		width: 350px;
 
-		@include break-small {
+		@mixin break-small {
 			width: 450px;
 		}
 
@@ -83,7 +83,7 @@ $dot-scale: 3;  // How much the pulse animation should scale up by in size
 	&[data-y-axis="center"],
 	&[data-y-axis="right"] {
 		// Position tips above popovers
-		z-index: z-index(".nux-dot-tip");
+		@mixin z-index ".nux-dot-tip";
 
 		// On mobile, always position the tip below the dot and fill the width of the viewport
 		@media (max-width: $break-small) {

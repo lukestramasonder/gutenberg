@@ -1,5 +1,5 @@
 .edit-site-editor__toggle-save-panel {
-	z-index: z-index(".edit-site-editor__toggle-save-panel");
+	@mixin z-index ".edit-site-editor__toggle-save-panel";
 	position: fixed !important; // Need to override the default relative positioning
 	top: -9999em;
 	bottom: auto;
@@ -38,7 +38,7 @@
 	display: flex;
 	justify-content: flex-end;
 
-	@include break-medium() {
+	@mixin break-medium {
 		display: none;
 	}
 }
@@ -47,7 +47,7 @@
 	// Leave space for the close button
 	height: calc(100% - #{$button-size} - #{$grid-unit-10});
 
-	@include break-medium() {
+	@mixin break-medium {
 		height: 100%;
 	}
 }

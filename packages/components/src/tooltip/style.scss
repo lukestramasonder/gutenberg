@@ -1,5 +1,5 @@
 .components-tooltip.components-popover {
-	z-index: z-index(".components-tooltip");
+	@mixin z-index ".components-tooltip";
 
 	.components-popover__content {
 		min-width: 0;

@@ -23,7 +23,7 @@
 		width: 100%;
 		outline: $border-width solid transparent;
 		transition: 0.2s outline;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 		resize: none;
 		margin-top: $default-block-margin;
 		margin-bottom: $default-block-margin;
@@ -68,7 +68,7 @@
 .block-editor-default-block-appender .block-editor-inserter {
 	right: $grid-unit-10; // Show to the right on mobile.
 
-	@include break-small {
+	@mixin break-small {
 		display: flex;
 		height: 100%;
 	}
@@ -79,7 +79,7 @@
 }
 
 .block-editor-default-block-appender .block-editor-inserter {
-	@include break-small {
+	@mixin break-small {
 		align-items: center;
 	}
 }

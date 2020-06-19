@@ -39,7 +39,7 @@
 	// for most mobile users and it frees up screen space for any item
 	// with a long description.
 	display: none;
-	@include break-mobile() {
+	@mixin break-mobile {
 		display: inline;
 	}
 }

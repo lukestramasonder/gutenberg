@@ -15,17 +15,17 @@
 
 	&.is-success {
 		border-left-color: $alert-green;
-		background-color: lighten($alert-green, 45%);
+		background-color: color($alert-green tint(45%));
 	}
 
 	&.is-warning {
 		border-left-color: $alert-yellow;
-		background-color: lighten($alert-yellow, 35%);
+		background-color: color($alert-yellow tint(35%));
 	}
 
 	&.is-error {
 		border-left-color: $alert-red;
-		background-color: lighten($alert-red, 35%);
+		background-color: color($alert-red tint(35%));
 	}
 }
 
@@ -67,7 +67,7 @@
 	// The notice should never be wider than the viewport, or the close button might be hidden. Especially relevant at high zoom levels. Related to https://core.trac.wordpress.org/ticket/47603#ticket.
 	max-width: 100vw;
 	box-sizing: border-box;
-	z-index: z-index(".components-notice-list");
+	@mixin z-index ".components-notice-list";
 
 	.components-notice__content {
 		margin-top: $grid-unit-15;

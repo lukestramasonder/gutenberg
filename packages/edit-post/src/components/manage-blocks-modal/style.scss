@@ -1,5 +1,5 @@
 .edit-post-manage-blocks-modal {
-	@include break-small() {
+	@mixin break-small {
 		height: calc(100% - #{ $header-height } - #{ $header-height });
 	}
 }
@@ -65,7 +65,7 @@
 	top: 0;
 	padding: $panel-padding 0;
 	background-color: $white;
-	z-index: z-index(".edit-post-manage-blocks-modal__category-title");
+	@mixin z-index ".edit-post-manage-blocks-modal__category-title";
 
 	.components-base-control__field {
 		margin-bottom: 0;

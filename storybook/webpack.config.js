@@ -27,7 +27,6 @@ module.exports = ( { config } ) => {
 						plugins: postcssPlugins,
 					},
 				},
-				'sass-loader',
 			],
 			include: path.resolve( __dirname ),
 		}

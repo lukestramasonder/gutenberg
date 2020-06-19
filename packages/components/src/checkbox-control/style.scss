@@ -2,7 +2,7 @@ $checkbox-input-size: 20px;
 $checkbox-input-size-sm: 24px; // Width & height for small viewports.
 
 .components-checkbox-control__input[type="checkbox"] {
-	@include checkbox-control;
+	@mixin checkbox-control;
 	background: $white;
 	color: $dark-gray-primary;
 	clear: none;
@@ -17,14 +17,14 @@ $checkbox-input-size-sm: 24px; // Width & height for small viewports.
 	width: $checkbox-input-size-sm;
 	height: $checkbox-input-size-sm;
 
-	@include break-small() {
+	@mixin break-small {
 		height: $checkbox-input-size;
 		width: $checkbox-input-size;
 	}
 
 	appearance: none;
 	transition: 0.1s border-color ease-in-out;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 
 
 	&:focus {
@@ -61,7 +61,7 @@ $checkbox-input-size-sm: 24px; // Width & height for small viewports.
 	width: $checkbox-input-size-sm;
 	height: $checkbox-input-size-sm;
 
-	@include break-small() {
+	@mixin break-small {
 		width: $checkbox-input-size;
 		height: $checkbox-input-size;
 	}
@@ -76,7 +76,7 @@ svg.components-checkbox-control__checked {
 	width: $button-size-small;
 	height: $button-size-small;
 
-	@include break-small() {
+	@mixin break-small {
 		left: -2px;
 		top: -2px;
 	}

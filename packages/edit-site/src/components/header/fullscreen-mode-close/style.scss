@@ -3,7 +3,7 @@
 	// when Fullscreen Mode is not an option in the "More" menu.
 	display: none;
 
-	@include break-medium() {
+	@mixin break-medium {
 		display: flex;
 		align-items: center;
 		align-self: stretch;

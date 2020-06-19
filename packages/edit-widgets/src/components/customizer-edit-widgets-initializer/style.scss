@@ -17,6 +17,6 @@
 		position: absolute;
 		top: 0;
 		width: calc(100% + 24px);
-		z-index: z-index(".edit-widgets-sidebar");
+		@mixin z-index ".edit-widgets-sidebar";
 	}
 }

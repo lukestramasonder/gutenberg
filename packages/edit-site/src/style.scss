@@ -17,19 +17,19 @@ html.wp-toolbar {
 }
 
 body.toplevel_page_gutenberg-edit-site {
-	@include wp-admin-reset(".edit-site");
+	@mixin wp-admin-reset ".edit-site";
 }
 
 .edit-site,
 // The modals are shown outside the .edit-site wrapper, they need these styles.
 .components-modal__frame {
-	@include reset;
+	@mixin reset;
 }
 
 .edit-site {
 	// On mobile the main content area has to scroll, otherwise you can invoke
 	// the over-scroll bounce on the non-scrolling container, for a bad experience.
-	@include break-small {
+	@mixin break-small {
 		bottom: 0;
 		left: 0;
 		min-height: calc(100vh - #{$admin-bar-height-big});
@@ -39,7 +39,7 @@ body.toplevel_page_gutenberg-edit-site {
 	}
 
 	// The WP header height changes at this breakpoint.
-	@include break-medium {
+	@mixin break-medium {
 		min-height: calc(100vh - #{$admin-bar-height});
 	}
 
@@ -87,4 +87,4 @@ body.toplevel_page_gutenberg-edit-site {
 	}
 }
 
-@include wordpress-admin-schemes();
+@mixin wordpress-admin-schemes;

@@ -35,7 +35,7 @@
 
 .components-editor-notices__snackbar {
 	width: 100%;
-	@include break-medium() {
+	@mixin break-medium {
 		width: fit-content;
 		width: -moz-fit-content;
 	}

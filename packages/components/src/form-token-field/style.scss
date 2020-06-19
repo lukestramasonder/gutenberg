@@ -1,5 +1,5 @@
 .components-form-token-field__input-container {
-	@include input-control();
+	@mixin input-control;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
@@ -128,7 +128,7 @@
 	height: auto;
 	background: $light-gray-500;
 	transition: all 0.2s cubic-bezier(0.4, 1, 0.4, 1);
-	@include reduce-motion;
+	@mixin reduce-motion;
 }
 
 .components-form-token-field__token-text {
@@ -159,7 +159,7 @@
 	max-height: 9em;
 	overflow-y: scroll;
 	transition: all 0.15s ease-in-out;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 	list-style: none;
 	border-top: $border-width solid $dark-gray-300;
 	margin: $grid-unit-05 (-$grid-unit-05) (-$grid-unit-05);

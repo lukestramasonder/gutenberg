@@ -7,7 +7,7 @@
 	overflow: auto;
 	height: auto;
 
-	@include break-small() {
+	@mixin break-small {
 		max-height: 70%;
 	}
 }

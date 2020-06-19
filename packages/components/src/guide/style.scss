@@ -2,7 +2,7 @@
 	$image-height: 300px;
 	$image-width: 320px;
 
-	@include break-small() {
+	@mixin break-small {
 		width: 600px;
 	}
 
@@ -40,7 +40,7 @@
 		justify-content: center;
 		position: relative;
 
-		@include break-small() {
+		@mixin break-small {
 			min-height: $image-height;
 		}
 	}

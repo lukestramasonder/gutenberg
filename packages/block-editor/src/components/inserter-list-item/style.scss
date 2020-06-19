@@ -20,7 +20,7 @@
 	border-radius: $radius-block-ui;
 	border: $border-width solid transparent;
 	transition: all 0.05s ease-in-out;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 	position: relative;
 	height: auto;
 
@@ -51,7 +51,7 @@
 	border-radius: $radius-block-ui;
 	color: $dark-gray-primary;
 	transition: all 0.05s ease-in-out;
-	@include reduce-motion("transition");
+	@mixin reduce-motion "transition";
 
 	.block-editor-block-icon {
 		margin-left: auto;
@@ -60,7 +60,7 @@
 
 	svg {
 		transition: all 0.15s ease-out;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 	}
 }
 

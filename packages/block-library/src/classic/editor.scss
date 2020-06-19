@@ -242,7 +242,7 @@
 div[data-type="core/freeform"] {
 	&::before {
 		transition: border-color 0.1s linear, box-shadow 0.1s linear;
-		@include reduce-motion("transition");
+		@mixin reduce-motion "transition";
 		border: $border-width solid $light-gray-500;
 
 		// Windows High Contrast mode will show this outline.
@@ -296,7 +296,7 @@ div[data-type="core/freeform"] {
 	width: auto;
 	margin: 0;
 	position: sticky;
-	z-index: z-index(".block-library-classic__toolbar");
+	@mixin z-index ".block-library-classic__toolbar";
 	top: $grid-unit-10;
 	border: $border-width solid $light-gray-500;
 	border-bottom: none;
@@ -320,7 +320,7 @@ div[data-type="core/freeform"] {
 		box-shadow: none;
 	}
 
-	@include break-small() {
+	@mixin break-small {
 		padding: 0;
 	}
 

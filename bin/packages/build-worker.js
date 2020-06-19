@@ -6,8 +6,8 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 const babel = require( '@babel/core' );
 const makeDir = require( 'make-dir' );
-const sass = require( 'node-sass' );
 const postcss = require( 'postcss' );
+
 /**
  * Internal dependencies
  */
@@ -43,13 +43,6 @@ const readFile = promisify( fs.readFile );
  * @type {Function}
  */
 const writeFile = promisify( fs.writeFile );
-
-/**
- * Promisified sass.render.
- *
- * @type {Function}
- */
-const renderSass = promisify( sass.render );
 
 /**
  * Get the package name for a specified file
@@ -97,27 +90,31 @@ const BUILD_TASK_BY_EXTENSION = {
 			readFile( file, 'utf8' ),
 		] );
 
-		const builtSass = await renderSass( {
-			file,
-			includePaths: [ path.join( PACKAGES_DIR, 'base-styles' ) ],
-			data:
-				[
-					'colors',
-					'breakpoints',
-					'variables',
-					'mixins',
-					'animations',
-					'z-index',
-				]
-					.map( ( imported ) => `@import "${ imported }";` )
-					.join( ' ' ) + contents,
-		} );
+		const sourceCSS =
+			[
+				'_mixins',
+				'_variables',
+				'_colors',
+				'_breakpoints',
+				'_animations',
+				'_z-index',
+			]
+				.map(
+					( imported ) =>
+						`@import "${ path.join(
+							PACKAGES_DIR,
+							'base-styles',
+							imported + '.scss'
+						) }";`
+				)
+				.join( ' ' ) + contents;
 
 		const result = await postcss(
 			require( '@wordpress/postcss-plugins-preset' )
-		).process( builtSass.css, {
+		).process( sourceCSS, {
 			from: 'src/app.css',
 			to: 'dest/app.css',
+			syntax: require( 'postcss-scss' ),
 		} );
 
 		const resultRTL = await postcss( [ require( 'rtlcss' )() ] ).process(

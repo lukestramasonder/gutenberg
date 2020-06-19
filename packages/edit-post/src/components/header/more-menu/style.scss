@@ -7,7 +7,7 @@
 		padding: 0 2px;
 	}
 
-	@include break-small() {
+	@mixin break-small {
 		margin-left: 0;
 
 		.components-button {
@@ -20,7 +20,7 @@
 	min-width: 260px;
 
 	// Let the menu scale to fit items.
-	@include break-mobile() {
+	@mixin break-mobile {
 		width: auto;
 		max-width: $break-mobile;
 	}
@@ -31,5 +31,5 @@
 }
 
 .components-popover.edit-post-more-menu__content {
-	z-index: z-index(".components-popover.edit-post-more-menu__content");
+	@mixin z-index ".components-popover.edit-post-more-menu__content";
 }

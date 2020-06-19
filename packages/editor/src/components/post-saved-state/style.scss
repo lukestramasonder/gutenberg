@@ -14,7 +14,7 @@
 		margin-right: $grid-unit-10;
 	}
 
-	@include break-small() {
+	@mixin break-small {
 		width: auto;
 		padding: $grid-unit-10 #{ $grid-unit-05 * 3 };
 		text-indent: inherit;

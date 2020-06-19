@@ -5,14 +5,14 @@
 }
 
 // To do: remove horizontal margin override by the editor.
-@include break-small() {
+@mixin break-small {
 	.editor-styles-wrapper
 	.block-editor-block-list__block.wp-block-column:nth-child(even) {
 		margin-left: $grid-unit-20 * 2;
 	}
 }
 
-@include break-medium() {
+@mixin break-medium {
 	.editor-styles-wrapper
 	.block-editor-block-list__block.wp-block-column:not(:first-child) {
 		margin-left: $grid-unit-20 * 2;

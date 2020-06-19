@@ -47,7 +47,7 @@ html.wp-toolbar {
 }
 
 body.block-editor-page {
-	@include wp-admin-reset( ".block-editor" );
+	@mixin wp-admin-reset ".block-editor";
 }
 
 // Target the editor UI excluding the metaboxes and custom fields areas.
@@ -58,13 +58,13 @@ body.block-editor-page {
 .editor-post-publish-panel,
 .components-popover,
 .components-modal__frame {
-	@include reset;
+	@mixin reset;
 }
 
 .block-editor__container {
 	// On mobile the main content area has to scroll, otherwise you can invoke
 	// the overscroll bounce on the non-scrolling container, for a bad experience.
-	@include break-small {
+	@mixin break-small {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -74,7 +74,7 @@ body.block-editor-page {
 	}
 
 	// The WP header height changes at this breakpoint.
-	@include break-medium {
+	@mixin break-medium {
 		min-height: calc(100vh - #{ $admin-bar-height });
 
 		body.is-fullscreen-mode & {
@@ -110,4 +110,4 @@ body.block-editor-page {
 	}
 }
 
-@include wordpress-admin-schemes();
+@mixin wordpress-admin-schemes;

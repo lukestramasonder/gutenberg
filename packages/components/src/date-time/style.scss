@@ -33,7 +33,7 @@
 
 	select,
 	input {
-		@include input-style__neutral();
+		@mixin input-style__neutral;
 	}
 
 	// Override inherited conflicting styles to be consistent.
@@ -95,7 +95,7 @@
 		top: 20px;
 
 		&:focus {
-			@include input-style__focus();
+			@mixin input-style__focus;
 		}
 	}
 
