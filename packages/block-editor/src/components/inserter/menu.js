@@ -21,6 +21,7 @@ import InserterPreviewPanel from './preview-panel';
 import InserterBlockList from './block-list';
 import BlockPatterns from './block-patterns';
 import useInsertionPoint from './hooks/use-insertion-point';
+import InserterReusableBlockList from './reusable-block-list';
 
 const stopKeyPropagation = ( event ) => event.stopPropagation();
 
@@ -103,6 +104,17 @@ function InserterMenu( {
 		<BlockPatterns onInsert={ onInsert } filterValue={ filterValue } />
 	);
 
+	const reusableBlocksTab = (
+		<div className="block-editor-inserter__reusable-block-list">
+			<InserterReusableBlockList
+				rootClientId={ destinationRootClientId }
+				onInsert={ onInsert }
+				onHover={ onHover }
+				filterValue={ filterValue }
+			/>
+		</div>
+	);
+
 	// Disable reason (no-autofocus): The inserter menu is a modal display, not one which
 	// is always visible, and one which already incurs this behavior of autoFocus via
 	// Popover's focusOnMount.
@@ -131,13 +143,20 @@ function InserterMenu( {
 								/* translators: Patterns tab title in the block inserter. */
 								title: __( 'Patterns' ),
 							},
+							{
+								name: 'reusable',
+								/* translators: Patterns tab title in the block inserter. */
+								title: __( 'Reusable' ),
+							},
 						] }
 					>
 						{ ( tab ) => {
 							if ( tab.name === 'blocks' ) {
 								return blocksTab;
+							} else if ( tab.name === 'patterns' ) {
+								return patternsTab;
 							}
-							return patternsTab;
+							return reusableBlocksTab;
 						} }
 					</TabPanel>
 				) }
